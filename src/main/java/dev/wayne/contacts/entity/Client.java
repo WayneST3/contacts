@@ -1,10 +1,9 @@
 package dev.wayne.contacts.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -19,8 +18,9 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(description = "Идентификатор записи")
-    private UUID id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Schema(description = "Идентификатор записи", accessMode = Schema.AccessMode.READ_ONLY)
+    private Long id;
 
     @Column(name = "name")
     @Schema(description = "Имя", requiredMode = Schema.RequiredMode.REQUIRED)
